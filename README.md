@@ -1,7 +1,6 @@
 #  action-npm-publish-with-git-tag
 
 [![Docker Image CI](https://github.com/azu/action-npm-publish-with-git-tag/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/azu/action-npm-publish-with-git-tag/actions)
-[![Release](https://img.shields.io/github/release/azu/action-npm-publish-with-git-tag.svg?maxAge=43200)](https://github.com/azu/action-npm-publish-with-git-tag/releases)
 
 This action runs `npm publish` and `git tag` for the repository.
 
