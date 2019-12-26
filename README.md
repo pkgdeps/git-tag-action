@@ -30,3 +30,8 @@ jobs:
           GITHUB_REPO: ${{ github.repository }}
           GIT_COMMIT_SHA: ${{ github.sha }}
 ```
+
+## Release
+
+  npm version {patch,minor,major}
+  git push && git push --tags

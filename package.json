@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "action-npm-publish-with-git-tag",
+  "version": "1.0.0",
+  "description": " npm publish & git tag if the version is not published",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/action-npm-publish-with-git-tag.git"
+  },
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/action-npm-publish-with-git-tag/issues"
+  },
+  "homepage": "https://github.com/azu/action-npm-publish-with-git-tag#readme"
+}
