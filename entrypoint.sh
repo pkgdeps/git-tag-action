@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+
 # get current version from package.json
 VERSION=$(cat package.json | jq -r .version)
 GIT_TAG_NAME=${INPUT_GIT_TAG_PREFIX}${VERSION}
@@ -13,9 +13,9 @@ http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
   -H "Authorization: token ${INPUT_GITHUB_TOKEN}")
 # if tag is not found, tagged
 if [ "$http_status_code" -ne "404" ] ; then
+  echo "already tagged: ${GIT_TAG_NAME} "
   exit 0
 fi
-
 curl -s -X POST $POST_API_URL \
   -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
   -d @- << EOS
