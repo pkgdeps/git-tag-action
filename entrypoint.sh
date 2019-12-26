@@ -1,6 +1,9 @@
 #!/bin/bash
 
+set -ex 
 cd "$GITHUB_WORKSPACE"
+# debug
+ls 
 # check this version is enable to release or not
 npx can-npm-publish --verbose
 if [ $? -eq 1 ] ; then
