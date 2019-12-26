@@ -8,17 +8,17 @@ fi
  
 # get current version from package.json
 VERSION=$(cat package.json | jq .version)
-GIT_TAG_NAME=${GIT_TAG_PREFIX}${VERSION}
+GIT_TAG_NAME=${git_tag_prefix}${VERSION}
 echo "add new tag to GitHub: ${GIT_TAG_NAME}"
  
 # Add tag to GitHub
-API_URL="https://api.github.com/repos/${GITHUB_REPO}/git/refs"
+API_URL="https://api.github.com/repos/${github_repo}/git/refs"
  
 curl -s -X POST $API_URL \
-  -H "Authorization: token $GITHUB_TOKEN" \
+  -H "Authorization: token $github_token" \
   -d @- << EOS
 {
   "ref": "refs/tags/${GIT_TAG_NAME}",
-  "sha": "${GIT_COMMIT_SHA}"
+  "sha": "${git_commit_sha}"
 }
 EOS

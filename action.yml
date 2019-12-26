@@ -2,17 +2,17 @@ name: 'action-npm-publish-with-git-tag'
 description: 'npm publish & push git tag to repository if the version is not published.'
 author: 'azu'
 inputs:
-  GITHUB_TOKEN:
+  github_token:
     description: 'GITHUB_TOKEN'
     required: true
-  GIT_COMMIT_SHA:
+  git_commit_sha:
     description: 'Git commit SHA'
     required: true
-  GIT_TAG_PREFIX:
+  git_tag_prefix:
     description: "prefix for git tag. Example) 'v'"
     required: false
     default: ""
-  GITHUB_REPO:
+  github_repo:
     description: 'GitHub repository path. Example) azu/test'
     required: true
 runs:
