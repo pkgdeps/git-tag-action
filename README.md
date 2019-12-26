@@ -38,6 +38,9 @@ jobs:
 ## Release
 
 
-
     npm version {patch,minor,major}
     git push && git push --tags
+
+## Reference
+
+- [GitHub Actionsでnpmに自動でリリースするworkflowを作ってみた ｜ Developers.IO](https://dev.classmethod.jp/etc/github-actions-npm-automatic-release/)
