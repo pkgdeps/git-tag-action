@@ -134,3 +134,10 @@ npm ERR! Unable to authenticate, need: Basic realm="GitHub Package Registry"
 npm ERR! A complete log of this run can be found in:
 npm ERR!     /github/home/.npm/_logs/2019-12-26T08_02_20_108Z-debug.log
 ```
+
+Please check `NODE_AUTH_TOKEN`
+
+```
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
