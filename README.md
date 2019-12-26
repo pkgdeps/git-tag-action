@@ -37,6 +37,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"
 ```
 
 ## UseCase
