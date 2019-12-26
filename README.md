@@ -27,6 +27,6 @@ jobs:
         uses: azu/action-npm-publish-with-git-tag@v1
         with:
           GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
-          GITHUB_REPO: ${{github.repository}}
-          GIT_COMMIT_SHA: ${{github.sha}}
+          GITHUB_REPO: ${{ github.repository }}
+          GIT_COMMIT_SHA: ${{ github.sha }}
 ```
