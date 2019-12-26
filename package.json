@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "action-npm-publish-with-git-tag",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": " npm publish & git tag if the version is not published",
   "main": "index.js",
   "scripts": {
