@@ -1,6 +1,6 @@
-FROM node:current-alpine
+FROM node:12-alpine
 
-RUN apk --no-cache add jq git
+RUN apk --no-cache add jq bash
 
 COPY entrypoint.sh /entrypoint.sh
 
