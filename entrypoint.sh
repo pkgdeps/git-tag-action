@@ -1,15 +1,22 @@
 #!/bin/bash
-
-cd "$GITHUB_WORKSPACE" 
+set -ex
 # get current version from package.json
-VERSION=$(cat package.json | jq .version)
+VERSION=$(cat package.json | jq -r .version)
 GIT_TAG_NAME=${INPUT_GIT_TAG_PREFIX}${VERSION}
 echo "add new tag to GitHub: ${GIT_TAG_NAME}"
- 
+
 # Add tag to GitHub
-API_URL="https://api.github.com/repos/${INPUT_GITHUB_REPO}/git/refs"
- 
-curl -s -X POST $API_URL \
+GET_API_URL="https://api.github.com/repos/${INPUT_GITHUB_REPO}/git/ref/tags/${GIT_TAG_NAME}"
+POST_API_URL="https://api.github.com/repos/${INPUT_GITHUB_REPO}/git/refs"
+# exist tag
+http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
+  -H "Authorization: token ${INPUT_GITHUB_TOKEN}")
+# if tag is not found, tagged
+if [ "$http_status_code" -ne "404" ] ; then
+  exit 0
+fi
+
+curl -s -X POST $POST_API_URL \
   -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
   -d @- << EOS
 {
