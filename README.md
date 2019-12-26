@@ -69,16 +69,14 @@ jobs:
         with:
           node-version: 12.x
           registry-url: 'https://npm.pkg.github.com'
-      - name: install can-npm-publish and dependencies
-        run: |
-          npm install --global can-npm-publish
-          npm install
+      - name: install
+        run: npm install
       - name: test
         run: npm test
       # Publish to npm if this version is not published
-      - name: Publish
+      - name: publish
         run: |
-          can-npm-publish --verbose && npm publish || echo "Does not publish"
+          npx can-npm-publish --verbose && npm publish || echo "Does not publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Push tag to GitHub if the version's tag is not tagged
