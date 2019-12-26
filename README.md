@@ -10,6 +10,8 @@ You create workflow file like `.github/workflows/publish.yml`.
 
 ```yml
 name: publish
+env:
+  CI: true
 on:
   push:
     branches:
@@ -17,20 +19,25 @@ on:
     tags:
       - "!*"
 jobs:
-  eslint:
-    name: Publish
+  release:
+    name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: setup Node
+        uses: actions/setup-node@v1
       - name: npm-publish-with-git-tag
         uses: azu/action-npm-publish-with-git-tag@v1
         with:
-          GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
-          GITHUB_REPO: ${{ github.repository }}
-          GIT_COMMIT_SHA: ${{ github.sha }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          git_commit_sha: ${{ github.sha }}
 ```
 
 ## Release
 
-  npm version {patch,minor,major}
-  git push && git push --tags
+
+
+    npm version {patch,minor,major}
+    git push && git push --tags

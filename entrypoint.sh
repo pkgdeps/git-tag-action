@@ -1,7 +1,7 @@
 #!/bin/bash
  
 # check this version is enable to release or not
-npx can-npm-publish
+npx can-npm-publish --verbose
 if [ $? -eq 1 ] ; then
   exit 255
 fi
