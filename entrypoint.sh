@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # get current version from package.json or env
-if [ -n "$INPUT_GITHUB_REPO" ] ; then
+if [ -n "$INPUT_VERSION" ] ; then
   VERSION=$INPUT_VERSION
 else
   VERSION=$(cat package.json | jq -r .version)
