@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# get current version from package.json
-VERSION=$(cat package.json | jq -r .version)
+# get current version from package.json or env
+if [ -n "$INPUT_GITHUB_REPO" ] ; then
+  VERSION=$INPUT_VERSION
+else
+  VERSION=$(cat package.json | jq -r .version)
+fi
 GIT_TAG_NAME=${INPUT_GIT_TAG_PREFIX}${VERSION}
 echo "add new tag to GitHub: ${GIT_TAG_NAME}"
 

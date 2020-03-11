@@ -95,6 +95,9 @@ jobs:
 
 ```yaml
 inputs:
+  version:
+    description: 'define version explicitly. if it is not defined, use package.json version'
+    required: false
   github_token:
     description: 'GITHUB_TOKEN'
     required: true
