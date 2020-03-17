@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/action-package-version-to-git-tag.git"
+    "url": "git+https://github.com/pkgdeps/action-package-version-to-git-tag.git"
   },
   "keywords": [],
   "author": "azu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/action-package-version-to-git-tag/issues"
+    "url": "https://github.com/pkgdeps/action-package-version-to-git-tag/issues"
   },
-  "homepage": "https://github.com/azu/action-package-version-to-git-tag#readme"
+  "homepage": "https://github.com/pkgdeps/action-package-version-to-git-tag#readme"
 }

@@ -1,6 +1,6 @@
 #  action-package-version-to-git-tag
 
-[![Docker Image CI](https://github.com/azu/action-package-version-to-git-tag/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/azu/action-package-version-to-git-tag/actions)
+[![Docker Image CI](https://github.com/pkgdeps/action-package-version-to-git-tag/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/pkgdeps/action-package-version-to-git-tag/actions)
 
 This action runs that get `${version}` from `package.json` and `git tag ${version}` for the repository.
 
@@ -32,7 +32,7 @@ jobs:
       - name: setup Node
         uses: actions/setup-node@v1
       - name: package-version-to-git-tag
-        uses: azu/action-package-version-to-git-tag@v1
+        uses: pkgdeps/action-package-version-to-git-tag@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
@@ -82,14 +82,14 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Push tag to GitHub if the version's tag is not tagged
       - name: package-version-to-git-tag
-        uses: azu/action-package-version-to-git-tag@v1
+        uses: pkgdeps/action-package-version-to-git-tag@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
 ```
 
-- [azu/npm-github-package-example: npm registry to GitHub Package Registry example.](https://github.com/azu/npm-github-package-example)
+- [pkgdeps/npm-github-package-example: npm registry to GitHub Package Registry example.](https://github.com/pkgdeps/npm-github-package-example)
 
 ## Options
 
@@ -109,7 +109,7 @@ inputs:
     required: false
     default: ""
   github_repo:
-    description: 'GitHub repository path. Example) azu/test'
+    description: 'GitHub repository path. Example) pkgdeps/test'
     required: true
 ```
 
