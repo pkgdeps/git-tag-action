@@ -2,7 +2,7 @@
 
 [![Docker Image CI](https://github.com/pkgdeps/action-package-version-to-git-tag/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/pkgdeps/action-package-version-to-git-tag/actions)
 
-This action do `git tag ${version}` for the repository, but it is idempotent. 
+This action do `git tag ${version}` to the repository, but it is idempotent. 
 
 - Push the tag if the tag does not exist on the repository
 
