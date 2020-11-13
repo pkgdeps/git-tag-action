@@ -1,4 +1,4 @@
-#  git-tag-action [![Actions Status: Release](https://github.com/pkgdeps/git-tag-action/workflows/Release/badge.svg)](https://github.com/pkgdeps/git-tag-action/actions?query=workflow%3A"Release") [![Actions Status: test](https://github.com/pkgdeps/git-tag-action/workflows/test/badge.svg)](https://github.com/pkgdeps/git-tag-action/actions?query=workflow%3A"test")
+# pkgdeps/git-tag-action [![Actions Status: Release](https://github.com/pkgdeps/git-tag-action/workflows/Release/badge.svg)](https://github.com/pkgdeps/git-tag-action/actions?query=workflow%3A"Release") [![Actions Status: test](https://github.com/pkgdeps/git-tag-action/workflows/test/badge.svg)](https://github.com/pkgdeps/git-tag-action/actions?query=workflow%3A"test")
 
 This action do `git tag ${version}` to the repository, but it is idempotent. 
 
