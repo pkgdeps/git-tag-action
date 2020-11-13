@@ -1,6 +1,4 @@
-#  action-package-version-to-git-tag
-
-[![Docker Image CI](https://github.com/pkgdeps/action-package-version-to-git-tag/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/pkgdeps/action-package-version-to-git-tag/actions)
+# pkgdeps/git-tag-action [![Actions Status: Release](https://github.com/pkgdeps/git-tag-action/workflows/Release/badge.svg)](https://github.com/pkgdeps/git-tag-action/actions?query=workflow%3A"Release") [![Actions Status: test](https://github.com/pkgdeps/git-tag-action/workflows/test/badge.svg)](https://github.com/pkgdeps/git-tag-action/actions?query=workflow%3A"test")
 
 This action do `git tag ${version}` to the repository, but it is idempotent. 
 
@@ -30,7 +28,7 @@ jobs:
       - name: setup Node
         uses: actions/setup-node@v1
       - name: package-version-to-git-tag
-        uses: pkgdeps/action-package-version-to-git-tag@v1
+        uses: pkgdeps/git-tag-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
@@ -83,7 +81,7 @@ with:
       - name: package-version
         run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
       - name: package-version-to-git-tag
-        uses: pkgdeps/action-package-version-to-git-tag@v2
+        uses: pkgdeps/git-tag-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
@@ -118,13 +116,14 @@ inputs:
 
 ## Release
 
-1. https://github.com/pkgdeps/action-package-version-to-git-tag
+1. https://github.com/pkgdeps/git-tag-action
 2. Create new tag like "v2.0.0"
 3. CI publish "v2.0.0", "v2.0", and "v2"
 
 ## CHANGELOG
 
 - 2.0.0: tag is annotated tag instead of lightweight tag
+    - Rename `action-package-version-to-git-tag` to `git-tag-action`
 
 ## Reference
 

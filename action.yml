@@ -1,5 +1,5 @@
-name: 'action-package-version-to-git-tag'
-description: 'npm publish & push git tag to repository if the version is not published.'
+name: 'pkgdeps/git-tag-action'
+description: 'git tag to repository if the version is not tagged.'
 author: 'azu'
 inputs:
   version:
