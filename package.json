@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "action-package-version-to-git-tag",
+  "name": "git-tag-action",
   "version": "1.5.0",
   "description": " npm publish & git tag if the version is not published",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pkgdeps/action-package-version-to-git-tag.git"
+    "url": "git+https://github.com/pkgdeps/git-tag-action.git"
   },
   "keywords": [
     "actions",
