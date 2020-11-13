@@ -90,7 +90,9 @@ with:
           git_tag_prefix: "v"
 ```
 
-- [pkgdeps/npm-github-package-example: npm registry to GitHub Package Registry example.](https://github.com/pkgdeps/npm-github-package-example)
+For more details, see following example
+
+- [azu/npm-github-package-example: npm registry to GitHub Package Registry example.](https://github.com/azu/npm-github-package-example)
 
 ## Options
 
