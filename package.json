@@ -5,17 +5,46 @@
   "description": " npm publish & git tag if the version is not published",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "#",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pkgdeps/action-package-version-to-git-tag.git"
   },
-  "keywords": [],
+  "keywords": [
+    "actions",
+    "node",
+    "git"
+  ],
   "author": "azu",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pkgdeps/action-package-version-to-git-tag/issues"
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
   },
-  "homepage": "https://github.com/pkgdeps/action-package-version-to-git-tag#readme"
+  "devDependencies": {
+    "@types/node": "^14.10.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.2"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
+  }
 }

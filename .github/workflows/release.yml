@@ -1,23 +1,13 @@
-name: Create Release
-on:
-  push:
-    tags:
-      - 'v*'
+on: create
+
+name: Release
 jobs:
-  build:
-    name: Create Release
+  release:
+    name: Release GitHub Actions
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: technote-space/release-github-actions@v6
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CREATE_MAJOR_VERSION_TAG: true
+          CREATE_MINOR_VERSION_TAG: true

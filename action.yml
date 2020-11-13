@@ -3,14 +3,14 @@ description: 'npm publish & push git tag to repository if the version is not pub
 author: 'azu'
 inputs:
   version:
-    description: 'define version explicitly. if it is not defined, use package.json version'
-    required: false
+    description: 'Git Tag version'
+    required: true
   github_token:
-    description: 'GITHUB_TOKEN'
+    description: 'use secrets.GITHUB_TOKEN'
     required: true
   git_commit_sha:
     description: 'Git commit SHA'
-    required: true
+    required: false
   git_tag_prefix:
     description: "prefix for git tag. Example) 'v'"
     required: false
@@ -19,8 +19,8 @@ inputs:
     description: 'GitHub repository path. Example) azu/test'
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'lib/main.js'
 branding:
   icon: 'alert-octagon'
   color: 'blue'

@@ -2,11 +2,9 @@
 
 [![Docker Image CI](https://github.com/pkgdeps/action-package-version-to-git-tag/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/pkgdeps/action-package-version-to-git-tag/actions)
 
-This action runs that get `${version}` from `package.json` and `git tag ${version}` for the repository.
+This action do `git tag ${version}` for the repository, but it is idempotent. 
 
-- Define the tag from `package.json`'s `version`
-  - also support `git_tag_prefix` option.
-- Push tag if the tag is not bumped on the repository
+- Push the tag if the tag does not exist on the repository
 
 ## Usage
 
@@ -37,6 +35,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
+          version: "1.0.0"
           git_tag_prefix: "v"
 ```
 
@@ -67,7 +66,7 @@ jobs:
         uses: actions/checkout@v1
       - name: setup Node
         uses: actions/setup-node@v1
-        with:
+with:
           node-version: 12.x
           registry-url: 'https://npm.pkg.github.com'
       - name: install
@@ -80,13 +79,17 @@ jobs:
           npx can-npm-publish --verbose && npm publish || echo "Does not publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # Push tag to GitHub if the version's tag is not tagged
+      # Push tag to GitHub if package.json version's tag is not tagged
+      - name: package-version
+        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
       - name: package-version-to-git-tag
-        uses: pkgdeps/action-package-version-to-git-tag@v1
+        uses: pkgdeps/action-package-version-to-git-tag@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
+          version: ${{ env.PACKAGE_VERSION }}
           git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"
 ```
 
 - [pkgdeps/npm-github-package-example: npm registry to GitHub Package Registry example.](https://github.com/pkgdeps/npm-github-package-example)
@@ -96,27 +99,32 @@ jobs:
 ```yaml
 inputs:
   version:
-    description: 'define version explicitly. if it is not defined, use package.json version'
-    required: false
+    description: 'Git Tag version'
+    required: true
   github_token:
-    description: 'GITHUB_TOKEN'
+    description: 'use secrets.GITHUB_TOKEN'
     required: true
   git_commit_sha:
     description: 'Git commit SHA'
-    required: true
+    required: false
   git_tag_prefix:
     description: "prefix for git tag. Example) 'v'"
     required: false
     default: ""
   github_repo:
-    description: 'GitHub repository path. Example) pkgdeps/test'
+    description: 'GitHub repository path. Example) azu/test'
     required: true
 ```
 
 ## Release
 
-    npm version {patch,minor,major}
-    git push && git push --tags
+1. https://github.com/pkgdeps/action-package-version-to-git-tag
+2. Create new tag like "v2.0.0"
+3. CI publish "v2.0.0", "v2.0", and "v2"
+
+## CHANGELOG
+
+- 2.0.0: tag is annotated tag instead of lightweight tag
 
 ## Reference
 
