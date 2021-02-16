@@ -15,6 +15,17 @@ export const tag = async (
     }
 ) => {
     core.debug("options:" + JSON.stringify(options, null, 4));
+    const tags = await octokit.repos.listTags({
+        owner: options.owner,
+        repo: options.repo
+    });
+    const alreadyTags = tags.data.some((tag) => {
+        return tag.name === options.gitTagName;
+    });
+    if (alreadyTags) {
+        core.debug("already tagged by listTags");
+        return;
+    }
     // logic
     try {
         await octokit.git.getRef({
@@ -22,7 +33,7 @@ export const tag = async (
             repo: options.repo,
             ref: `refs/tags/${options.gitTagName}`
         });
-        core.debug("already tagged");
+        core.debug("already tagged by ref");
         return; // already tagged
     } catch (error) {
         // https://stackoverflow.com/questions/15672547/how-to-tag-a-commit-in-api-using-curl-command
