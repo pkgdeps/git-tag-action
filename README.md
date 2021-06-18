@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v2
       - name: setup Node
         uses: actions/setup-node@v2
-with:
+        with:
           node-version: 14.x
           registry-url: 'https://npm.pkg.github.com'
       - name: install
