@@ -19,7 +19,7 @@ export const tag = async (
         owner: options.owner,
         repo: options.repo
     });
-    const alreadyTags = tags.data.some((tag) => {
+    const alreadyTags = tags.data.some((tag: { name: string }) => {
         return tag.name === options.gitTagName;
     });
     if (alreadyTags) {
@@ -35,28 +35,33 @@ export const tag = async (
         });
         core.debug("already tagged by ref");
         return; // already tagged
-    } catch (error) {
-        // https://stackoverflow.com/questions/15672547/how-to-tag-a-commit-in-api-using-curl-command
-        const tagRes = await octokit.git.createTag({
-            tag: options.gitTagName,
-            object: options.gitCommitSha,
-            message: options.gitTagName,
-            type: "commit",
-            tagger: {
-                name: options.gitName,
-                email: options.gitEmail,
-                date: options.gitDate
-            },
-            owner: options.owner,
-            repo: options.repo
-        });
-        core.debug("create tag" + JSON.stringify(tagRes));
-        const refRes = await octokit.git.createRef({
-            owner: options.owner,
-            repo: options.repo,
-            sha: tagRes.data.sha,
-            ref: `refs/tags/${options.gitTagName}`
-        });
-        core.debug("creat ref to tag:" + JSON.stringify(refRes));
+    } catch (error: any) {
+        core.debug("expected error: " + error?.message);
+        try {
+            // https://stackoverflow.com/questions/15672547/how-to-tag-a-commit-in-api-using-curl-command
+            const tagRes = await octokit.git.createTag({
+                tag: options.gitTagName,
+                object: options.gitCommitSha,
+                message: options.gitTagName,
+                type: "commit",
+                tagger: {
+                    name: options.gitName,
+                    email: options.gitEmail,
+                    date: options.gitDate
+                },
+                owner: options.owner,
+                repo: options.repo
+            });
+            core.debug("create tag" + JSON.stringify(tagRes));
+            const refRes = await octokit.git.createRef({
+                owner: options.owner,
+                repo: options.repo,
+                sha: tagRes.data.sha,
+                ref: `refs/tags/${options.gitTagName}`
+            });
+            core.debug("creat ref to tag:" + JSON.stringify(refRes));
+        } catch (createTagError: any) {
+            core.error("create tag and get unexpected error: " + createTagError?.message);
+        }
     }
 };
