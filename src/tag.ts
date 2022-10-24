@@ -15,7 +15,7 @@ export const tag = async (
     }
 ) => {
     core.debug("options:" + JSON.stringify(options, null, 4));
-    const tags = await octokit.repos.listTags({
+    const tags = await octokit.rest.repos.listTags({
         owner: options.owner,
         repo: options.repo
     });
@@ -28,7 +28,7 @@ export const tag = async (
     }
     // logic
     try {
-        await octokit.git.getRef({
+        await octokit.rest.git.getRef({
             owner: options.owner,
             repo: options.repo,
             ref: `refs/tags/${options.gitTagName}`
@@ -39,7 +39,7 @@ export const tag = async (
         core.debug("expected error: " + error?.message);
         try {
             // https://stackoverflow.com/questions/15672547/how-to-tag-a-commit-in-api-using-curl-command
-            const tagRes = await octokit.git.createTag({
+            const tagRes = await octokit.rest.git.createTag({
                 tag: options.gitTagName,
                 object: options.gitCommitSha,
                 message: options.gitTagName,
@@ -53,7 +53,7 @@ export const tag = async (
                 repo: options.repo
             });
             core.debug("create tag" + JSON.stringify(tagRes));
-            const refRes = await octokit.git.createRef({
+            const refRes = await octokit.rest.git.createRef({
                 owner: options.owner,
                 repo: options.repo,
                 sha: tagRes.data.sha,
