@@ -24,11 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
       - name: package-version-to-git-tag
-        uses: pkgdeps/git-tag-action@v1
+        uses: pkgdeps/git-tag-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
@@ -61,11 +61,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: setup Node
-        uses: actions/setup-node@v1
-with:
-          node-version: 12.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
           registry-url: 'https://npm.pkg.github.com'
       - name: install
         run: npm install
