@@ -28,11 +28,15 @@ export const tag = async (
     }
     // logic
     try {
-        await octokit.rest.git.getRef({
+        const refRes = await octokit.rest.git.getRef({
             owner: options.owner,
             repo: options.repo,
             ref: `refs/tags/${options.gitTagName}`
         });
+        // @ts-expect-error: this condition is not needed. res.status should be 200. It is double check
+        if (refRes.status === 404) {
+            throw new Error("not found the ref");
+        }
         core.debug("already tagged by ref");
         return; // already tagged
     } catch (error: any) {
