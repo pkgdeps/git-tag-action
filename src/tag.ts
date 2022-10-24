@@ -65,7 +65,7 @@ export const tag = async (
             });
             core.debug("creat ref to tag:" + JSON.stringify(refRes));
         } catch (createTagError: any) {
-            core.error("create tag and get unexpected error: " + createTagError?.message);
+            core.warning("create tag and get unexpected error: " + createTagError?.message);
         }
     }
 };
