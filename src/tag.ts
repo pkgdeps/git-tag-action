@@ -37,7 +37,7 @@ export const tag = async (
         if (refRes.status === 404) {
             throw new Error("not found the ref");
         }
-        core.debug("already tagged by ref");
+        core.debug("already tagged by ref:" + JSON.stringify(refRes));
         return; // already tagged
     } catch (error: any) {
         core.debug("expected error: " + error?.message);
