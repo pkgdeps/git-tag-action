@@ -19,7 +19,7 @@ inputs:
     description: 'GitHub repository path. Example) azu/test'
     required: true
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'lib/main.js'
 branding:
   icon: 'alert-octagon'
