@@ -7,7 +7,7 @@ jobs:
     name: Release GitHub Actions
     runs-on: ubuntu-latest
     steps:
-      - uses: technote-space/release-github-actions@v6
+      - uses: technote-space/release-github-actions@v8
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CREATE_MAJOR_VERSION_TAG: true
