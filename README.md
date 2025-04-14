@@ -39,7 +39,7 @@ jobs:
 
 ## UseCase
 
-1. [Manual] Update Version: `npm --no-git-tag-version vession {patch,minor,major}`
+1. [Manual] Update Version: `npm --no-git-tag-version version {patch,minor,major}`
 2. [Manual] Push: `git push --tags` or Merge the Pull Request
 3. [CI] Publish to npm and Push a tag to GitHub  
 
