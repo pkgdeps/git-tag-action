@@ -31,7 +31,7 @@ export const tag = async (
         const refRes = await octokit.rest.git.getRef({
             owner: options.owner,
             repo: options.repo,
-            ref: `refs/tags/${options.gitTagName}`
+            ref: `tags/${options.gitTagName}`
         });
         // @ts-expect-error: this condition is not needed. res.status should be 200. It is double check
         if (refRes.status === 404) {
@@ -40,6 +40,9 @@ export const tag = async (
         core.debug("already tagged by ref:" + JSON.stringify(refRes));
         return; // already tagged
     } catch (error: any) {
+        if (error?.status !== 404) {
+            throw error;
+        }
         core.debug("expected error: " + error?.message);
         try {
             // https://stackoverflow.com/questions/15672547/how-to-tag-a-commit-in-api-using-curl-command
@@ -65,7 +68,7 @@ export const tag = async (
             });
             core.debug("creat ref to tag:" + JSON.stringify(refRes));
         } catch (createTagError: any) {
-            core.warning("create tag and get unexpected error: " + createTagError?.message);
+            throw createTagError;
         }
     }
 };
